@@ -82,10 +82,11 @@ version_info = ({})
 
 
 def get_version():
+    version_file = 'basicsr/version.py'
+    version_vars = {}
     with open(version_file, 'r') as f:
-        exec(compile(f.read(), version_file, 'exec'))
-    return locals()['__version__']
-
+        exec(compile(f.read(), version_file, 'exec'), version_vars)
+    return version_vars['__version__']
 
 def make_cuda_ext(name, module, sources, sources_cuda=None):
     if sources_cuda is None:
