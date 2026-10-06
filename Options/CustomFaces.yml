@@ -1,0 +1,34 @@
+name: CustomFaces_Results
+model_type: ImageRestorationModel
+scale: 1
+num_gpu: 1
+manual_seed: 100
+
+datasets:
+  test:
+    name: CustomFaces
+    type: PairedImageDataset
+    dataroot_gt: data/CustomFaces/Test/target
+    dataroot_lq: data/CustomFaces/Test/input
+    io_backend:
+      type: disk
+
+# network structures
+network_g:
+  type: RetinexFormer
+  in_channels: 3
+  out_channels: 3
+  n_feat: 40
+  stage: 1
+  num_blocks: [1, 2, 2]
+
+# path
+path:
+  pretrain_network_g: pretrained_weights/LOL_v1.pth
+  strict_load_g: true
+  param_key_g: params
+
+# validation settings
+val:
+  save_img: true
+  grids: false
