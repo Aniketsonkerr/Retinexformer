@@ -15,7 +15,7 @@ from basicsr.models.archs.RetinexFormer_arch import RetinexFormer
 # 1. Initialize Face Cascade with Auto-Download Fallback
 cascade_filename = 'haarcascade_frontalface_default.xml'
 local_cascade_path = os.path.join(BASE_DIR, cascade_filename)
-
+ 
 if not os.path.exists(local_cascade_path):
     print(f"[Info] Downloading missing face detection model ({cascade_filename})...")
     url = f"https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/{cascade_filename}"
